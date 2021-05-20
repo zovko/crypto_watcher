@@ -36,8 +36,10 @@ pub struct FlypoolCurrentStatistics {
     pub stale_shares: u64,
     pub active_workers: u32,
     pub unpaid: u64,
-    #[serde(default)]
-    pub unconfirmed: u32,
+    pub unconfirmed: Option<f32>,
+    pub coins_per_min: Option<f32>,
+    pub usd_per_min: Option<f32>,
+    pub btc_per_min: Option<f32>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -50,9 +52,10 @@ pub struct FlypoolSettings {
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
-pub struct FlypoolDashboard {
+pub struct FlypoolDashboardEndpoint {
     pub statistics: Vec<FlypoolStatistics>,
     pub workers: Vec<FlypoolWorker>,
     pub current_statistics: FlypoolCurrentStatistics,
     pub settings: FlypoolSettings,
 }
+
